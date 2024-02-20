@@ -14,11 +14,6 @@
 
 syntax = "proto3";
 
-option java_multiple_files = true;
-option java_package = "io.grpc.examples.helloworld";
-option java_outer_classname = "HelloWorldProto";
-option objc_class_prefix = "HLW";
-
 option go_package = "./server/main";
 
 package helloworld;
@@ -28,6 +23,18 @@ service Greeter {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply) {}
   rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+}
+
+service Minitalk {
+  rpc SendMsg (MsgRequest) returns (MsgReply) {}
+}
+
+message MsgRequest {
+  string request = 1;
+}
+
+message MsgReply {
+  string reply = 1;
 }
 
 // The request message containing the user's name.
