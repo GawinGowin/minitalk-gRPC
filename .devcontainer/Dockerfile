@@ -1,8 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/go:1-1.22-bookworm as go
 
 RUN apt-get -qq update \
-    && apt-get install -y --no-install-recommends g++ \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y --no-install-recommends g++
 
 WORKDIR /usr/src/app/
 
@@ -13,3 +12,6 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py \
 COPY ./requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt --break-system-packages
+RUN apt-get -qq update \
+    && apt-get install -y --no-install-recommends protobuf-compiler \
+    && rm -rf /var/lib/apt/lists/*
