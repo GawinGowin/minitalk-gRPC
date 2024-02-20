@@ -101,3 +101,64 @@ class Greeter(object):
             helloworld__pb2.HelloReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class MinitalkStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.SendMsg = channel.unary_unary(
+                '/helloworld.Minitalk/SendMsg',
+                request_serializer=helloworld__pb2.MsgRequest.SerializeToString,
+                response_deserializer=helloworld__pb2.MsgReply.FromString,
+                )
+
+
+class MinitalkServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def SendMsg(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_MinitalkServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'SendMsg': grpc.unary_unary_rpc_method_handler(
+                    servicer.SendMsg,
+                    request_deserializer=helloworld__pb2.MsgRequest.FromString,
+                    response_serializer=helloworld__pb2.MsgReply.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'helloworld.Minitalk', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class Minitalk(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def SendMsg(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/helloworld.Minitalk/SendMsg',
+            helloworld__pb2.MsgRequest.SerializeToString,
+            helloworld__pb2.MsgReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
