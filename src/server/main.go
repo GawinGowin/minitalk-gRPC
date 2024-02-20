@@ -35,13 +35,12 @@ var (
 
 // server is used to implement helloworld.GreeterServer.
 type server struct {
-	UnimplementedGreeterServer
+	UnimplementedMinitalkServer
 }
 
-// SayHello implements helloworld.GreeterServer
-func (s *server) SayHello(ctx context.Context, in *HelloRequest) (*HelloReply, error) {
-	log.Printf("Received: %v", in.GetName())
-	return &HelloReply{Message: "Hello " + in.GetName()}, nil
+func (s *server) SendMsg(ctx context.Context, in *MsgRequest) (*MsgReply, error) {
+	log.Printf("Received: %v", in.GetRequest())
+	return &MsgReply{Reply: ""}, nil
 }
 
 func main() {
@@ -51,7 +50,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	RegisterGreeterServer(s, &server{})
+	RegisterMinitalkServer(s, &server{})
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

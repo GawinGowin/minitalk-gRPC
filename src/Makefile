@@ -1,4 +1,4 @@
-PROTO_FILE := helloworld.proto
+PROTO_FILE := minitalk.proto
 
 SERVER_DIR := server
 CLIENT_DIR := client
