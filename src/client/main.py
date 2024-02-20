@@ -35,4 +35,4 @@ def run(msg:str=""):
 if __name__ == "__main__":
   logging.basicConfig()
   args = sys.argv
-  run(args[0])
+  run(args[1] if len(args) == 2 else args[0])

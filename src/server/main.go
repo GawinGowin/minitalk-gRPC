@@ -39,8 +39,9 @@ type server struct {
 }
 
 func (s *server) SendMsg(ctx context.Context, in *MsgRequest) (*MsgReply, error) {
-	log.Printf("Received: %v", in.GetRequest())
-	return &MsgReply{Reply: ""}, nil
+	get_request := in.GetRequest()
+	log.Printf("Received: %v", get_request)
+	return &MsgReply{Reply: get_request}, nil
 }
 
 func main() {
