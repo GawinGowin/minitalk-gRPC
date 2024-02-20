@@ -18,10 +18,11 @@
 	"customizations": {
 	  "vscode": {
 		"extensions": [
-		  "GitHub.copilot",
-		  "mhutchie.git-graph",
-		  "ms-python.python",
-		  "zxh404.vscode-proto3"
+			"GitHub.copilot",
+			"mhutchie.git-graph",
+			"ms-python.python",
+			"zxh404.vscode-proto3",
+			"golang.go"
 		],
 		"settings": {
 		  "remote.autoForwardPortsFallback": 0,
